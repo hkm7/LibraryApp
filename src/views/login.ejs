@@ -31,19 +31,11 @@
               </li>
               <%}%>
             </ul>
-            <ul class="nav navbar-right navbar-nav">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-search"></i></a>
-                <ul class="dropdown-menu" style="padding:12px;">
-                  <form class="form-inline">
-                    <button type="submit" class="btn btn-default pull-right"><i class="glyphicon glyphicon-search"></i></button><input type="text" class="form-control pull-left" placeholder="Search">
-                  </form>
-                </ul>
-              </li>
-            </ul>
           </nav>
         </div>
       </header>
+
+
       <div id="masthead">  
         <div class="container">
           <div class="row">
@@ -53,22 +45,67 @@
               </h1>
             </div>
             <div class="col-md-5">
-              <div class="well well-lg"> 
-                <div class="row">
-                  <div class="col-sm-12">
-                    
-                  
+                <div class="well well-lg"> 
+                  <div class="row">
+                    <div class="col-sm-12">
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
           </div> 
         </div><!-- /cont -->
+
+        <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="top-spacer"> </div>
+              </div>
+            </div> 
+          </div><!-- /cont -->
     </div>
 
+    <div class="container">
+        <div class="row">
+          
+          <div class="col-md-12"> 
+            
+            <div class="panel">
+              <div class="panel-body">
+                <div class="row">    
+                  <br>
+                  <div class="col-md-6">
+                    <br><p style="font-weight: bold;">
+                    LOGIN HERE <br></p>
+                    <!-- LOG IN -->
+                    <form class="form" id="loginForm" onsubmit="return loginCheck()" action='/' method="GET">
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone number</label>
+                            <input type="tel" required class="form-control" id="phone-login" required onkeyup="phonevalidlogin()">
+                            <div id="phone-login-msg" class="form-text"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password-login" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="signed-in-checkbox">
+                            <label class="form-check-label">Keep me signed in</label>
+                        </div>
+                        <button type="submit" id="loginButton" class="btn btn-primary">Login</button>
+                    </form>
+                    <!-- LOG IN -->
+                </div>
+                </div>
+                <hr>     
+              </div>
+            </div>                                           
+            </div><!--/col-12-->
+        </div>
+      </div>
     
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="js/custom-script.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
