@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const port = process.env.PORT || 8080;
 const nav = [
     {
         link:'/books', name:'Books'
@@ -38,4 +39,4 @@ app.get('/', function(req, res){
     });
 });
 
-app.listen(8080);
+app.listen(port);
