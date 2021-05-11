@@ -1,5 +1,6 @@
 const express = require("express");
 const loginRouter = express.Router();
+const loginData = require('../model/loginData');
 
 function lRouter(nav){
 
@@ -8,6 +9,17 @@ function lRouter(nav){
             nav,
             title: 'Login'
         });
+    });
+
+    loginRouter.post('/auth',function(req,res){
+        var item = {
+            email: req.body.email,
+            password: req.body.password
+        };
+
+        var creds = loginData(item);
+        creds.save();
+        res.redirect('/books');
     });
 
     return loginRouter;

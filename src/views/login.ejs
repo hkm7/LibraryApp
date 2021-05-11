@@ -75,15 +75,15 @@
                     <br><p style="font-weight: bold;">
                     LOGIN HERE <br></p>
                     <!-- LOG IN -->
-                    <form class="form" id="loginForm" onsubmit="return loginCheck()" action='/' method="GET">
+                    <form class="form" id="loginForm" action='/auth' method="POST">
                         <div class="mb-3">
-                            <label for="phone" class="form-label">Phone number</label>
-                            <input type="tel" required class="form-control" id="phone-login" required onkeyup="phonevalidlogin()">
-                            <div id="phone-login-msg" class="form-text"></div>
+                          <label for="Email" class="form-label">Email address</label>
+                          <input type="email" class="form-control" name='email' id='emailLogin' required onkeyup="emailvalid()">
+                          <div id="email-signup-msg" class="form-text"></div>
                         </div>
                         <div class="mb-3">
                             <label for="Password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password-login" required>
+                            <input type="password" class="form-control" name='password' id="password-login" required>
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="signed-in-checkbox">

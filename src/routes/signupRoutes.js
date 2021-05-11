@@ -10,6 +10,18 @@ function sRouter(nav){
         })
     });
 
+    signupRouter.post('/auth',function(req,res){
+        var item = {
+            phone:req.body.phone,
+            email: req.body.email,
+            password: req.body.password
+        };
+
+        var creds = loginData(item);
+        creds.save();
+        res.redirect('/books');
+    });
+    
     return signupRouter;
 };
 

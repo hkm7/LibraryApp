@@ -150,7 +150,7 @@ function checkpass() {
 
 // *********************LOGIN*******************************
 function loginCheck() {
-    if (phoneExp.test(phoneLogin.value)) {
+    if (emailExp.test(emailLogin.value)) {
         if (passExp.test(passwordLogin.value)) {
             alert("Login successful!");
             return true;
