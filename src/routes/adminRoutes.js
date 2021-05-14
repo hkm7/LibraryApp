@@ -3,15 +3,15 @@ const adminRouter = express.Router();
 const bookData = require('../model/BookData');
 const authData = require('../model/authData');
 
-function router(nav){
-    adminRouter.get('/',function(req, res){
+function router(nav, redirectLogin){
+    adminRouter.get('/', redirectLogin,function(req, res){
         res.render('edit',{
             nav,
             title: 'Edit Data'
         })
     });
 
-    adminRouter.post('/addBook',function(req,res){
+    adminRouter.post('/addBook', redirectLogin,function(req,res){
         var item = {
             title: req.body.title,
             author: req.body.author,

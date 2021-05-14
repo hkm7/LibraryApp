@@ -1,25 +1,37 @@
 const express = require("express");
+const bcrypt = require('bcryptjs');
 const signupRouter = express.Router();
+const credData = require('../model/credentialData');
 
-function sRouter(nav){
-    
-    signupRouter.get('/', function (req, res){
+function sRouter(nav,redirectHome){
+    signupRouter.get('/', redirectHome, function (req, res){
         res.render('signup',{
             nav,
             title : 'Signup'
         })
     });
 
-    signupRouter.post('/auth',function(req,res){
+    signupRouter.post('/auth', redirectHome, function(req,res){
+        var passwordHash = bcrypt.hashSync(req.body.pwd, 10);
+        var mail = req.body.mailId;
         var item = {
-            phone:req.body.phone,
-            email: req.body.email,
-            password: req.body.password
+            phone:req.body.phoneNum,
+            email: mail,
+            password: passwordHash
         };
-
-        var creds = loginData(item);
-        creds.save();
-        res.redirect('/books');
+        credData.findOne({email: mail})
+        .then(function (credential){
+            if(credential===null){
+                var creds = credData(item);
+                creds.save();
+                req.session.userId = credential._id;
+                return res.redirect('/admin');
+            }
+            else{
+                return res.redirect('/login');
+            }
+            return res.redirect('/admin');
+        }); 
     });
     
     return signupRouter;
