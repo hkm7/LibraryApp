@@ -43,7 +43,7 @@ function router(nav, redirectLogin){
         res.redirect('/authors');
     });
 
-    adminRouter.get('/editbook/:id',function(req,res){
+    adminRouter.get('/editbook/:id', redirectLogin,function(req,res){
         // res.send("yay");
         const id = req.params.id; 
         var auth='';
@@ -60,7 +60,7 @@ function router(nav, redirectLogin){
         });
     });
 
-    adminRouter.get('/editauth/:id',function(req,res){
+    adminRouter.get('/editauth/:id', redirectLogin,function(req,res){
         const id = req.params.id;
         var book='';
         authData.findOne({_id: id})

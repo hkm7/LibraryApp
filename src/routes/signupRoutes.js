@@ -19,18 +19,17 @@ function sRouter(nav,redirectHome){
             email: mail,
             password: passwordHash
         };
-        credData.findOne({email: mail})
-        .then(function (credential){
-            if(credential===null){
-                var creds = credData(item);
-                creds.save();
-                req.session.userId = String(credential._id);
-                res.redirect('/admin');
-            }
-            else{
-                res.redirect('/login');
-            }
-        }); 
+        
+        var exists= credData.findOne({email: mail});
+        if(exists===null){
+            var creds = credData(item);
+            creds.save();
+            req.session.userId = String(credential._id);
+            res.redirect('/admin');     
+        }  
+        else{
+            res.send("User already exists");
+        } 
     });
     
     return signupRouter;

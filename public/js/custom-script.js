@@ -152,15 +152,12 @@ function checkpass() {
 function loginCheck() {
     if (emailExp.test(emailLogin.value)) {
         if (passExp.test(passwordLogin.value)) {
-            alert("Login successful!");
             return true;
         } 
         else {
-            alert("Login failed: Invalid credentials");
             return false;
         }
     } else {
-        alert("Login failed: Invalid credentials");
         return false;
     }
 }
@@ -169,18 +166,13 @@ function loginCheck() {
 function signupCheck() {
     if (phoneSignupFlag && emailSignupFlag) {
         if (passwordSignupFlag && confirmPasswordSignupFlag) {
-            alert("Successfully signed up.");
             return true;
         } 
         else {
-            console.log('Here 1');
-            alert("Sign up error: Check credentials.");
             return false;
         }
     } 
     else {
-        console.log('Here 2');
-        alert("Sign up error: Check credentials.");
         return false;
     }
 }
@@ -204,6 +196,5 @@ function ContactEmailvalid(){
 }
 
 function formSubmit(){
-    alert("Query submitted successfully!");
     return true;
 }

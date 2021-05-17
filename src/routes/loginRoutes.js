@@ -21,7 +21,6 @@ function lRouter(nav, redirectHome){
                 res.redirect('/books');
             }
             else{
-                alert("Error: Wrong username/password!");
                 res.redirect('/login');
             }
         }); 
