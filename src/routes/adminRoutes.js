@@ -76,6 +76,15 @@ function router(nav, redirectLogin){
         });
     });
 
+    adminRouter.get('/deletebook/:id',redirectLogin,function(req,res){
+        
+    });
+
+    adminRouter.post('/deletebook/:id',redirectLogin, function(req,res){
+        const id = req.params.id;
+        bookData.deleteOne({_id: id});
+    });
+
     return adminRouter;
 };
 

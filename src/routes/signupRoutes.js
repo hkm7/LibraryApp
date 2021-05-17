@@ -24,7 +24,9 @@ function sRouter(nav,redirectHome){
         if(exists===null){
             var creds = credData(item);
             creds.save();
+            var credential = String(credData.findOne({email:mail})._id);
             req.session.userId = String(credential._id);
+            console.log(credential);
             res.redirect('/admin');     
         }  
         else{
