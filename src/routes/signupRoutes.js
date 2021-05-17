@@ -24,13 +24,12 @@ function sRouter(nav,redirectHome){
             if(credential===null){
                 var creds = credData(item);
                 creds.save();
-                req.session.userId = credential._id;
-                return res.redirect('/admin');
+                req.session.userId = String(credential._id);
+                res.redirect('/admin');
             }
             else{
-                return res.redirect('/login');
+                res.redirect('/login');
             }
-            return res.redirect('/admin');
         }); 
     });
     

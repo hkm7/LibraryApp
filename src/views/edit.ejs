@@ -76,26 +76,26 @@
                                     Add Books 
                                 <br></p>
                                 <!-- BOOK -->
-                                <form class="form" id="addBookForm" action='/edit/addBook' method="POST">
+                                <form class="form" id="addBookForm" method="POST" action=<%= act1%>>
                                     <div class="mb-3">
                                         Title <br>
-                                        <input type="text" class="form-control" name="title" required>
+                                        <input type="text" class="form-control" name="title" required value=<%= book.title%>>
                                     </div>
                                     <div class="mb-3">
                                         Author <br>
-                                        <input type="text" class="form-control" name="author" required>
+                                        <input type="text" class="form-control" name="author" required value=<%= book.author%>>
                                     </div>
                                     <div class="mb-3">
                                         Genre(s) <br>
-                                        <input type="text" class="form-control" name="genre" required>
+                                        <input type="text" class="form-control" name="genre" required value=<%= book.genre%>>
                                     </div>
                                     <div class="mb-3">
                                         Image Link <br>
-                                        <input type="text" class="form-control" name="image" required>
+                                        <input type="text" class="form-control" name="image" required value=<%= book.image%>>
                                     </div>
                                     <div class="mb-3">
                                         About <br>
-                                        <input type="text" class="form-control" name="bio" required>
+                                        <input type="text" class="form-control" name="bio" required value=<%= book.bio%>>
                                     </div>
                                     <div class="mb-3 form-check">
                                       <input type="checkbox" class="form-check-input" id="confirmAuthCheck">
@@ -114,22 +114,22 @@
                                     Add Author 
                                 <br></p>
                                 <!-- LOG IN -->
-                                <form class="form" id="addAuthForm" action='/edit/addAuth' method="POST">
+                                <form class="form" id="addAuthForm" method="POST" action=<%= act2%>>
                                     <div class="mb-3">
                                         Author's Name <br>
-                                        <input type="text" class="form-control" name="name" required>
+                                        <input type="text" class="form-control" name="name" required value=<%= auth.name%>>
                                     </div>
                                     <div class="mb-3">
                                         About author <br>
-                                        <input type="text" class="form-control" name="bio" required>
+                                        <input type="text" class="form-control" name="bio" required value=<%= auth.bio%>>
                                     </div>
                                     <div class="mb-3">
                                         Image link <br>
-                                        <input type="text" class="form-control" name="image" required>
+                                        <input type="text" class="form-control" name="image" required value=<%= auth.image%>>
                                     </div>
                                     <div class="mb-3">
                                         More About Author <br>
-                                        <input type="text" class="form-control" name="bio2" required>
+                                        <input type="text" class="form-control" name="bio2" required value=<%= auth.bio2%>>
                                     </div>
                                     <div class="mb-3 form-check">
                                         <input type="checkbox" class="form-check-input" id="confirmAuthCheck">

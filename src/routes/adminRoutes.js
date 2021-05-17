@@ -5,9 +5,14 @@ const authData = require('../model/authData');
 
 function router(nav, redirectLogin){
     adminRouter.get('/', redirectLogin,function(req, res){
+        var auth='',book='';
         res.render('edit',{
             nav,
-            title: 'Edit Data'
+            auth,
+            book,
+            title: 'Edit Data',
+            act1:'/edit/addBook',
+            act2:'/edit/addAuth'
         })
     });
 
@@ -36,6 +41,39 @@ function router(nav, redirectLogin){
         var auth = authData(item);
         auth.save();
         res.redirect('/authors');
+    });
+
+    adminRouter.get('/editbook/:id',function(req,res){
+        // res.send("yay");
+        const id = req.params.id; 
+        var auth='';
+        bookData.findOne({_id: id})
+        .then(function(book){
+           res.render('edit',{
+                nav,
+                title: "Edit data",
+                book,
+                auth,
+                act1:'/edit/editbook/:id',
+                act2:'/edit/addAuth'
+            });
+        });
+    });
+
+    adminRouter.get('/editauth/:id',function(req,res){
+        const id = req.params.id;
+        var book='';
+        authData.findOne({_id: id})
+        .then(function(auth){
+            res.render('edit',{
+                nav,
+                title: "Edit data",
+                book,
+                auth,
+                act1:'/edit/addBook',
+                act2:'/edit/editauth/:id'
+            });
+        });
     });
 
     return adminRouter;

@@ -6,8 +6,8 @@ var phoneLoginMsg = document.getElementById("phone-login-msg");
 // signup variables
 var phoneSignUp = document.getElementById("phone-signup");
 var emailSignUp = document.getElementById("email-signup");
-var passwordSignUp = document.getElementById("password-signup");
-var confirmPassword = document.getElementById("confirm-password-singup");
+var passwordSignUp = document.getElementById("passwordSignUp");
+var confirmPassword = document.getElementById("confirmPassword");
 
 var phoneSignupMsg = document.getElementById("phone-signup-msg");
 var emailSignupMsg = document.getElementById("email-signup-msg");
@@ -171,12 +171,15 @@ function signupCheck() {
         if (passwordSignupFlag && confirmPasswordSignupFlag) {
             alert("Successfully signed up.");
             return true;
-        } else {
+        } 
+        else {
+            console.log('Here 1');
             alert("Sign up error: Check credentials.");
             return false;
         }
     } 
     else {
+        console.log('Here 2');
         alert("Sign up error: Check credentials.");
         return false;
     }
