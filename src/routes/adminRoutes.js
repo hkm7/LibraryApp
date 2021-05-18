@@ -54,7 +54,7 @@ function router(nav, redirectLogin){
                 title: "Edit data",
                 book,
                 auth,
-                act1:'/edit/editbook/:id',
+                act1:'/edit/editbook/'+id,
                 act2:'/edit/addAuth'
             });
         });
@@ -71,18 +71,63 @@ function router(nav, redirectLogin){
                 book,
                 auth,
                 act1:'/edit/addBook',
-                act2:'/edit/editauth/:id'
+                act2:'/edit/editauth/'+id
             });
         });
     });
 
-    adminRouter.get('/deletebook/:id',redirectLogin,function(req,res){
+    adminRouter.post('/editbook/:id',(req,res)=> {
+        const id = req.params.id;
+        filter= { _id : id };
+        var item = {
+            title: req.body.title,
+            author: req.body.author,
+            genre: req.body.genre,
+            image: req.body.image,
+            bio: req.body.bio,
+        };
         
+        bookData.findOneAndUpdate(filter, {$set:item})
+        .then(function(){
+            res.redirect('/books');
+        });
+
+        res.redirect('/books');
+    });
+
+    adminRouter.post('/editauth/:id',(req,res)=> {
+        const id = req.params.id;
+        filter= { _id : id };
+        var item = {
+            name: req.body.name,
+            image: req.body.image,
+            bio: req.body.bio,
+            bio2: req.body.bio2
+        };
+        
+        authData.findOneAndUpdate(filter, {$set:item})
+        .then(function(){
+            res.redirect('/authors');
+        });
+
+        res.redirect('/authors');
     });
 
     adminRouter.post('/deletebook/:id',redirectLogin, function(req,res){
         const id = req.params.id;
-        bookData.deleteOne({_id: id});
+        bookData.deleteOne({_id: id})
+        .then(function(x){
+            res.redirect('/books');
+        });
+        
+    });
+
+    adminRouter.post('/deleteauth/:id',redirectLogin, function(req,res){
+        const id = req.params.id;
+        authData.deleteOne({_id: id})
+        .then(function(x){
+            res.redirect('/authors');
+        });
     });
 
     return adminRouter;

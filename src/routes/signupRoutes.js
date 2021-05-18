@@ -19,19 +19,20 @@ function sRouter(nav,redirectHome){
             email: mail,
             password: passwordHash
         };
-        
-        var exists= credData.findOne({email: mail});
-        if(exists===null){
-            var creds = credData(item);
-            creds.save();
-            var credential = String(credData.findOne({email:mail})._id);
-            req.session.userId = String(credential._id);
-            console.log(credential);
-            res.redirect('/admin');     
-        }  
-        else{
-            res.send("User already exists");
-        } 
+        credData.findOne({email: mail})
+        .then(function (cred){
+            if(cred === null){
+                var creds = credData(item);
+                creds.save();
+                req.session.userId = creds._id;
+                res.redirect('/books');     
+            }  
+            else{
+                res.redirect('/login');
+            }
+            return res.redirect('/');
+        });
+             
     });
     
     return signupRouter;
