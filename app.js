@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
-var session = require('express-session')
-
+var session = require('express-session');
+const mongoose = require('mongoose');
+const MongoDBSession = require('connect-mongodb-session')(session);
 const sessTime= 2*60*60*1000;
 const {
     PORT=8080,
@@ -12,6 +13,7 @@ const {
 } = process.env;
 
 const IN_PROD = NODE_ENV ==='production';
+const MongoURI = "mongodb+srv://hrishi:BhbQd6P2sVFYSxQ@hkm7.js3cl.mongodb.net/library?retryWrites=true&w=majority";
 
 var nav = [
     {
@@ -62,11 +64,28 @@ const adminRouter = require('./src/routes/adminRoutes')(nav,redirectLogin);
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('./public'));
+
+mongoose.connect(MongoURI,{
+    useNewUrlParser: true, 
+    useCreateIndex: true, 
+    useUnifiedTopology: true
+    }
+    )
+    .then((res)=>{
+    console.log("Mongo connected 1")
+});
+
+const store = new MongoDBSession({
+    uri: MongoURI,
+    collection: "mySession",
+});
+
 app.use(session({
     name: SESS_NAME,
     resave: false,
     saveUninitialized: false,
     secret: SESS_SECRET,
+    store:store,
     cookie:{
         maxAge: SESS_LIFETIME,
         sameSite: true,

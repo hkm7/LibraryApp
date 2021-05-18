@@ -24,6 +24,7 @@ function lRouter(nav, redirectHome){
         credData.findOne({email: mail})
         .then(function (credential){
             if(bcrypt.compareSync(pwd, credential.password)){
+                req.session.isAuth = true;
                 req.session.userId = credential._id;
                 res.redirect('/books');
             }
