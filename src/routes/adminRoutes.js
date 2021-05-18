@@ -5,6 +5,13 @@ const authData = require('../model/authData');
 
 function router(nav, redirectLogin){
     adminRouter.get('/', redirectLogin,function(req, res){
+
+        if(!req.session.userId){
+            var nav=[{link:'/books', name:'Books'},{link:'/authors', name:'Authors'},{link:'/login', name:'Login'},{link:'/signup', name:'Sign Up'}];
+        }else{
+            var nav=[{link:'/books', name:'Books'},{link:'/authors', name:'Authors'},{link:'/edit', name:'Post'},{link:'/logout', name:'Logout'}];
+        }
+
         var auth='',book='';
         res.render('edit',{
             nav,
@@ -30,7 +37,7 @@ function router(nav, redirectLogin){
         res.redirect('/books');
     });
 
-    adminRouter.post('/addAuth',function(req,res){
+    adminRouter.post('/addAuth', redirectLogin, function(req,res){
         var item = {
             name: req.body.name,
             image: req.body.image,
@@ -44,6 +51,13 @@ function router(nav, redirectLogin){
     });
 
     adminRouter.get('/editbook/:id', redirectLogin,function(req,res){
+
+        if(!req.session.userId){
+            var nav=[{link:'/books', name:'Books'},{link:'/authors', name:'Authors'},{link:'/login', name:'Login'},{link:'/signup', name:'Sign Up'}];
+        }else{
+            var nav=[{link:'/books', name:'Books'},{link:'/authors', name:'Authors'},{link:'/edit', name:'Post'},{link:'/logout', name:'Logout'}];
+        }
+
         // res.send("yay");
         const id = req.params.id; 
         var auth='';
@@ -61,6 +75,13 @@ function router(nav, redirectLogin){
     });
 
     adminRouter.get('/editauth/:id', redirectLogin,function(req,res){
+
+        if(!req.session.userId){
+            var nav=[{link:'/books', name:'Books'},{link:'/authors', name:'Authors'},{link:'/login', name:'Login'},{link:'/signup', name:'Sign Up'}];
+        }else{
+            var nav=[{link:'/books', name:'Books'},{link:'/authors', name:'Authors'},{link:'/edit', name:'Post'},{link:'/logout', name:'Logout'}];
+        }
+
         const id = req.params.id;
         var book='';
         authData.findOne({_id: id})

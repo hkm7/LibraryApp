@@ -5,6 +5,13 @@ const credData = require('../model/credentialData');
 
 function lRouter(nav, redirectHome){
     loginRouter.get('/', redirectHome, function(req,res){
+
+        if(!req.session.userId){
+            var nav=[{link:'/books', name:'Books'},{link:'/authors', name:'Authors'},{link:'/login', name:'Login'},{link:'/signup', name:'Sign Up'}];
+        }else{
+            var nav=[{link:'/books', name:'Books'},{link:'/authors', name:'Authors'},{link:'/edit', name:'Post'},{link:'/logout', name:'Logout'}];
+        }
+
         res.render('login',{
             nav,
             title: 'Login'

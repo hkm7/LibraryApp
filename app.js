@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 var session = require('express-session')
-// const port = process.env.PORT || 8080;
 
 const sessTime= 2*60*60*1000;
 const {
@@ -55,8 +54,8 @@ const redirectHome = (req, res, next) =>{
 }
 
 
-const booksRouter = require('./src/routes/bookRoutes')(nav);
-const authR = require('./src/routes/authRoutes')(nav);
+const booksRouter = require('./src/routes/bookRoutes')(nav,redirectLogin);
+const authR = require('./src/routes/authRoutes')(nav,redirectLogin);
 const loginRouter = require('./src/routes/loginRoutes')(nav,redirectHome);
 const signupRouter = require('./src/routes/signupRoutes')(nav,redirectHome);
 const adminRouter = require('./src/routes/adminRoutes')(nav,redirectLogin);
@@ -85,7 +84,13 @@ app.set('view engine','ejs');
 app.set('views', './src/views');
 
 app.get('/', function(req, res){
-    res.render("index",
+    
+        if(!req.session.userId){
+            var nav=[{link:'/books', name:'Books'},{link:'/authors', name:'Authors'},{link:'/login', name:'Login'},{link:'/signup', name:'Sign Up'}];
+        }else{
+            var nav=[{link:'/books', name:'Books'},{link:'/authors', name:'Authors'},{link:'/edit', name:'Post'},{link:'/logout', name:'Logout'}];
+        }
+        res.render("index",
     {
         nav,
         title:'Library'
