@@ -70,7 +70,8 @@ app.use(session({
     cookie:{
         maxAge: SESS_LIFETIME,
         sameSite: true,
-        secure: IN_PROD
+        secure: IN_PROD,
+        httpOnly: false
     }
 }));
 
@@ -84,7 +85,7 @@ app.set('view engine','ejs');
 app.set('views', './src/views');
 
 app.get('/', function(req, res){
-    
+        console.log(req.session);
         if(!req.session.userId){
             var nav=[{link:'/books', name:'Books'},{link:'/authors', name:'Authors'},{link:'/login', name:'Login'},{link:'/signup', name:'Sign Up'}];
         }else{
