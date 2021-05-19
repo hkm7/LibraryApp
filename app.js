@@ -85,6 +85,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     secret: SESS_SECRET,
+    path: 'anotherlibraryapp.herokuapp.com',
     store:store,
     cookie:{
         maxAge: SESS_LIFETIME,
