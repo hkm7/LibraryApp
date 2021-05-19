@@ -79,7 +79,7 @@ const store = new MongoDBSession({
     uri: MongoURI,
     collection: "mySession",
 });
-
+app.enable('trust proxy');
 app.use(session({
     name: SESS_NAME,
     resave: false,
