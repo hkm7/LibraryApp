@@ -85,7 +85,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     secret: SESS_SECRET,
-    path: 'anotherlibraryapp.herokuapp.com',
+    path: '/',
     store:store,
     cookie:{
         maxAge: SESS_LIFETIME,
@@ -106,7 +106,7 @@ app.set('views', './src/views');
 
 app.get('/', function(req, res){
         console.log(req.session);
-        if(!req.session.isAuth){
+        if(!req.session.userId){
             var nav=[{link:'/books', name:'Books'},{link:'/authors', name:'Authors'},{link:'/login', name:'Login'},{link:'/signup', name:'Sign Up'}];
         }else{
             var nav=[{link:'/books', name:'Books'},{link:'/authors', name:'Authors'},{link:'/edit', name:'Post'},{link:'/logout', name:'Logout'}];
