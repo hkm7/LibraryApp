@@ -85,11 +85,10 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     secret: SESS_SECRET,
-    path: '/',
     store:store,
     cookie:{
         maxAge: SESS_LIFETIME,
-        sameSite: false,
+        sameSite: 'none',
         secure: IN_PROD,
         httpOnly: false
     }
